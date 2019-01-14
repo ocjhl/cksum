@@ -9,7 +9,7 @@ import (
 	"os"
 )
 
-var filename = flag.String("f", "filename", "-f filename")
+//var filename = flag.String("f", "filename", "-f filename")
 
 var crctab = crc32.Table{
 	0x00000000,
@@ -67,14 +67,20 @@ var crctab = crc32.Table{
 
 func main() {
 	flag.Parse()
-	println(crcer32(*filename))
+
+	var filename string
+	if len(os.Args) != 2 {
+		fmt.Fprintf(os.Stderr, "usage %s <filename>\n", os.Args[0])
+		os.Exit(1) //退出os 状态码0表示成功，非0表示出错。
+	}
+	filename = os.Args[1]
+	println(crcer32(filename))
 }
 
 const fileChunk = 8192 // 8KB
 
 func crcer32(filePath string) string {
-	//file, err := os.Open(filePath)
-	file, err := os.OpenFile(*filename, os.O_RDONLY, os.ModeType)
+	file, err := os.OpenFile(filePath, os.O_RDONLY, os.ModeType)
 	if err != nil {
 		return err.Error()
 	}

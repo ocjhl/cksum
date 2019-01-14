@@ -1,4 +1,4 @@
-GOARCH=386 GOOS=linux go build -o cksumlinux386 
-GOARCH=amd64 GOOS=linux go build -o cksumlinuxamd64  
-GOARCH=386 GOOS=windows go build -o cksumwindows386 
-GOARCH=amd64 GOOS=windows go build -o cksumwindowsamd64 
+GOARCH=386 GOOS=linux go build -o cksums32 
+GOARCH=amd64 GOOS=linux go build -o cksums64  
+GOARCH=386 GOOS=windows go build -o cksums32.exe 
+GOARCH=amd64 GOOS=windows go build -o cksums64.exe
